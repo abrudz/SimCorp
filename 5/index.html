@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/style.css" />
+    <title>Exercise set 5 - Dyalog version 18.0: selected new features</title>
+  </head>
+  <body>
+    <article>
+      <h1>
+      <b>Exercise 5:</b> Validate and Fix Dates</h1>
+      <p>Given a vector of 3-element 
+      <code>(Y,M,D)</code>-dates:</p>
+      <ul>
+        <li>Convert valid dates to Extended ISO format</li>
+        <li>Convert invalid dates to 
+        <code>&#39;&#39;</code></li>
+      </ul>
+      <p>Don&#39;t use error trapping!</p>
+      <pre>
+      VFD (2020 11 31)(2020 12 01)(2020 12 31)(2021 13 01)
+┌───────┬───────────────────────────────────────────┐
+│0 1 1 0│┌┬───────────────────┬───────────────────┬┐│
+│       │││2020-12-01T00:00:00│2020-12-31T00:00:00│││
+│       │└┴───────────────────┴───────────────────┴┘│
+└───────┴───────────────────────────────────────────┘
+</pre>
+    </article>
+  </body>
+</html>

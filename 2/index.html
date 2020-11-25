@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/style.css" />
+    <title>Exercise set 2 - Dyalog version 18.0: selected new features</title>
+  </head>
+  <body>
+    <article>
+      <h1>
+      <b>Exercise 2a:</b> Index of letters in alphabet</h1>
+      <p>Given an alphabet as left argument and word as right-argument, return the case-insensitive indices of the letters in the alphabet.</p>
+      <pre>
+      ⎕A Index 'APL'
+1 16 12
+      (⎕UCS 944+⍳25) Index 'Ιταλία'
+9 20 1 11 26 1
+</pre>
+    </article>
+    <article>
+      <h1>
+      <b>Exercise 2b:</b> Mask letters</h1>
+      <p>Indicate which characters are Latin letters.</p>
+      <pre>
+      Letters 'Ai lati d''Italia.'
+1 1 0 1 1 1 1 0 1 0 1 1 1 1 1 1 0
+</pre>
+    </article>
+    <article>
+      <h1>
+      <b>Exercise 2c:</b> Palindrome checker</h1>
+      <p>Check if the text is a palindrome, disregarding case and punctuation, including spaces.</p>
+      <pre>
+      Palin 'Ai lati d''Italia.'
+1
+      Palin 'Vesuvius Gigante!'
+0
+</pre>
+    </article>
+  </body>
+</html>

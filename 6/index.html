@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/style.css" />
+    <title>Exercise set 6 - Dyalog version 18.0: selected new features</title>
+  </head>
+  <body>
+    <article>
+      <h1>
+      <b>Exercise 6a:</b> Head and Tail</h1>
+      <p>Rewrite <code>{(1↑⍵)(1↓⍵)}</code> in a neat way using <code>X⊂Y</code></p>
+      <pre>
+      HeadTail 'Hello'
+┌─┬────┐
+│H│ello│
+└─┴────┘
+      HeadTail ⍳4
+┌─┬─────┐
+│1│2 3 4│
+└─┴─────┘
+</pre>
+    </article>
+    <article>
+      <h1>
+      <b>Exercise 6b:</b> Partition at indices</h1>
+      <pre>
+      'abracadabra' SplitAt 1 5 5 7
+┌────┬┬──┬─────┐
+│abra││ca│dabra│
+└────┴┴──┴─────┘
+      'abracadabra' SplitAt 1 1 12
+┌┬───────────┬┐
+││abracadabra││
+└┴───────────┴┘
+</pre>
+    </article>
+  </body>
+</html>
