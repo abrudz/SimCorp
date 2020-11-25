@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>Exercises - Dyalog version 18.0: selected new features</title>
+    <style>
+@font-face{font-family:M;src:local('APL385 Unicode'),url(apl385.ttf)}
+*{font-family:sans-serif}
+body{margin:2em}
+pre,code,input{font-family:M}
+b{color:orange}
+section{border-top:1px solid #000;padding:1em 2em}
+article{display:none}
+input{text-transform:uppercase}
+nav,input,button{font-size:large}
+nav{padding-bottom:1em}
+h1{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    </style>
+    <script>
+Go=_=>{
+  [...document.getElementsByTagName('ARTICLE')].forEach(e=>e.style.display='none');
+  (e=>[e,o][+!e].style.display='unset')(document.getElementById(i.value.toUpperCase()))
+}
+    </script>
+  </head>
+  <body>
+    <h1>Exercises - Dyalog version 18.0: selected new features</h1>
+    <nav>
+    <label for="i">Enter 2-letter code: 
+    <input id="i" placeholder="XX" size="4" maxlength="4" required="" pattern="[A-Za-z]{2}"
+    onchange="Go()" /></label>
+    
+    <button onclick="Go()">Go!</button></nav>
+    <article id="YD">
+      <section>
+        <h2>
+        <b>Exercise 1a:</b> Same-rank arguments?</h2>
+        <pre>
+      1 2 3 SameRank 1 2 3 4
+1
+      3 SameRank ⍬
+0
+      3 SameRank ,1
+0
+      (2 3⍴⍳6) SameRank ⍪2
+1
+</pre>
+      </section>
+      <section>
+        <h2>
+        <b>Exercise 1b:</b> Apply a filter</h2>
+        <p>Given a 2-element vector consisting of:</p>
+        <ul>
+          <li>a mask (Boolean vector)</li>
+          <li>some data (any array)</li>
+        </ul>
+        <p>Use the mask to filter the data</p>
+        <p>Write a tacit function equivalent to 
+        <code>{(m d)←⍵ ⋄ m⌿d}</code></p>
+        <pre>
+      Filter (1 0 1)(¯5 4 3J4)
+¯5 3J4
+</pre>
+      </section>
+      <section>
+        <h2>
+        <b>Exercise 1c:</b> Count non-members</h2>
+        <pre>
+      'hello' NotIn 'world'
+2
+      2 7 1 8 2 NotIn 1 6 1 8
+3
+</pre>
+      </section>
+    </article>
+    <article id="ZJ">
+      <section>
+        <h2>
+        <b>Exercise 2a:</b> Index of letters in alphabet</h2>
+        <p>Given an alphabet as left argument and word as right-argument, return the case-insensitive indices of the letters in the
+        alphabet.</p>
+        <pre>
+      ⎕A Index 'APL'
+1 16 12
+      (⎕UCS 944+⍳25) Index 'Ιταλία'
+9 20 1 11 26 1
+</pre>
+      </section>
+      <section>
+        <h2>
+        <b>Exercise 2b:</b> Mask letters</h2>
+        <p>Indicate which characters are Latin letters.</p>
+        <pre>
+      Letters 'Ai lati d''Italia.'
+1 1 0 1 1 1 1 0 1 0 1 1 1 1 1 1 0
+</pre>
+      </section>
+      <section>
+        <h2>
+        <b>Exercise 2c:</b> Palindrome checker</h2>
+        <p>Check if the text is a palindrome, disregarding case and punctuation, including spaces.</p>
+        <pre>
+      Palin 'Ai lati d''Italia.'
+1
+      Palin 'Vesuvius Gigante!'
+0
+</pre>
+      </section>
+    </article>
+    <article id="PB">
+      <section>
+        <h2>
+        <b>Exercise 3:</b> Non-unique</h2>
+        <p>Find all the elements that have duplicates.</p>
+        <pre>
+      NonU 'Mississippi'
+sip
+      NonU 2 7 1 8 2 8
+2 8
+</pre>
+      </section>
+    </article>
+    <article id="OY">
+      <section>
+        <h2>
+        <b>Exercise 4a:</b> Get current time-zone</h2>
+        <p>In hours (can be fractional).</p>
+        <ul>
+          <li>
+          <code>⎕DT</code> 
+          <a href="https://help.dyalog.com/latest/Content/Language/System%20Functions/dt.htm">
+            <button>F1</button>
+          </a></li>
+        </ul>
+        <pre>
+      TZ
+1
+</pre>
+      </section>
+      <section>
+        <h2>
+        <b>Exercise 4b:</b> Inclusive date range</h2>
+        <p>Given two dates as a 2 element vector of 
+        <code>(Y,M,D)</code> vectors, compute the 
+        <em>inclusive</em> number of days between them.</p>
+        <pre>
+      Range (2020 6 11)(2020 12 1)
+174
+</pre>
+      </section>
+    </article>
+    <article id="NV">
+      <section>
+        <h2>
+        <b>Exercise 5:</b> Validate and Fix Dates</h2>
+        <p>Given a vector of 3-element 
+        <code>(Y,M,D)</code>-dates:</p>
+        <ul>
+          <li>Convert valid dates to Extended ISO format</li>
+          <li>Convert invalid dates to 
+          <code>''</code></li>
+        </ul>
+        <p>Don't use error trapping!</p>
+        <pre>
+      VFD (2020 11 31)(2020 12 01)(2020 12 31)(2021 13 01)
+┌───────┬───────────────────────────────────────────┐
+│0 1 1 0│┌┬───────────────────┬───────────────────┬┐│
+│       │││2020-12-01T00:00:00│2020-12-31T00:00:00│││
+│       │└┴───────────────────┴───────────────────┴┘│
+└───────┴───────────────────────────────────────────┘
+</pre>
+      </section>
+    </article>
+    <article id="WZ">
+      <section>
+        <h2>
+        <b>Exercise 6a:</b> Head and Tail</h2>
+        <p>Rewrite 
+        <code>{(1↑⍵)(1↓⍵)}</code> in a neat way using 
+        <code>X⊂Y</code></p>
+        <pre>
+      HeadTail 'Hello'
+┌─┬────┐
+│H│ello│
+└─┴────┘
+      HeadTail ⍳4
+┌─┬─────┐
+│1│2 3 4│
+└─┴─────┘
+</pre>
+      </section>
+      <section>
+        <h2>
+        <b>Exercise 6b:</b> Partition at indices</h2>
+        <pre>
+      'abracadabra' SplitAt 1 5 5 7
+┌────┬┬──┬─────┐
+│abra││ca│dabra│
+└────┴┴──┴─────┘
+      'abracadabra' SplitAt 1 1 12
+┌┬───────────┬┐
+││abracadabra││
+└┴───────────┴┘
+</pre>
+      </section>
+    </article>
+    <article id="o">
+      <p><strong>Invalid code!</strong></p>
+    </article>
+  </body>
+</html>
