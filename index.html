@@ -7,36 +7,44 @@
     <style>
 @font-face{font-family:M;src:local('APL385 Unicode'),url(apl385.ttf)}
 *{font-family:sans-serif}
-body{margin:2em}
+body{margin:2em;overflow-y:scroll}
 pre,code,input{font-family:M}
 b{color:orange}
 section{border-top:1px solid #000;padding:1em 2em}
 article{display:none}
 input{text-transform:uppercase}
-nav{padding-bottom:1em}
+div{padding-bottom:1em;text-align:center}
 nav,input,button,strong{font-size:large}
 strong{color:#f00}
 h1{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-img{height:246.5px}
+article img{height:246.5px}
+div img{height:49px;margin-bottom:-20px}
     </style>
     <script>
 Go=_=>{
   [...document.getElementsByTagName('ARTICLE')].forEach(e=>e.style.display='none');
-  (e=>[e,o][+!e].style.display='unset')(document.getElementById(i.value.toUpperCase()))
+  (e=>[e,o][+!e].style.display='unset')(document.getElementById(i.value.toUpperCase()));
+  Sel()
 }
+Sel=_=>{i.selectionStart=0;i.selectionEnd=2}
     </script>
   </head>
   <body>
     <h1>Exercises - Dyalog version 18.0: selected new features</h1>
-    <nav>
+    <div>
     <label for="i">Enter 2-letter code: 
     <input id="i" placeholder="XX" size="4" maxlength="4" required="" pattern="[A-Za-z]{2}"
-    onchange="Go()" /></label>
+    onchange="Go()" onclick="Sel()"/></label>
     
-    <button onclick="Go()">Go!</button></nav>
+    <button onclick="Go()">Go!</button>
+    <p>Ask for help ( <img src="Help.png"> ) if you get stuck</p>
+    </div>
+    <article id="o">
+      <p><strong>Invalid code!</strong></p>
+    </article>
     <article id="YD">
       <section>
-        <img src="Compositions.png">
+        <div><img src="Compositions.png"></div>
       </section>
       <section>
         <h2>
@@ -61,7 +69,7 @@ Go=_=>{
           <li>some data (any array)</li>
         </ul>
         <p>Use the mask to filter the data</p>
-        <p>Write a tacit function equivalent to 
+        <p>Write a <u title="derived or train">tacit</u> function equivalent to 
         <code>{(m d)←⍵ ⋄ m⌿d}</code></p>
         <pre>
       Filter (1 0 1)(¯5 4 3J4)
@@ -113,10 +121,41 @@ Go=_=>{
 </pre>
       </section>
     </article>
-    <article id="PB">
+    <article id="WZ">
       <section>
         <h2>
-        <b>Exercise 3:</b> Non-unique</h2>
+        <b>Exercise 4a:</b> Head and Tail</h2>
+        <p>Rewrite 
+        <code>{(1↑⍵)(1↓⍵)}</code> in a neat way using 
+        <code>X⊂Y</code></p>
+        <pre>
+      HeadTail 'Hello'
+┌─┬────┐
+│H│ello│
+└─┴────┘
+      HeadTail ⍳4
+┌─┬─────┐
+│1│2 3 4│
+└─┴─────┘
+</pre>
+      </section>
+      <section>
+        <h2>
+        <b>Exercise 4b:</b> Partition at indices</h2>
+        <pre>
+      'abracadabra' SplitAt 1 5 5 7
+┌────┬┬──┬─────┐
+│abra││ca│dabra│
+└────┴┴──┴─────┘
+      'abracadabra' SplitAt 1 1 12
+┌┬───────────┬┐
+││abracadabra││
+└┴───────────┴┘
+</pre>
+      </section>
+      <section>
+        <h2>
+        <b>Exercise 4c:</b> Non-unique</h2>
         <p>Find all the elements that have duplicates.</p>
         <pre>
       NonU 'Mississippi'
@@ -129,7 +168,7 @@ sip
     <article id="OY">
       <section>
         <h2>
-        <b>Exercise 4a:</b> Get current time-zone</h2>
+        <b>Exercise 3a:</b> Get current time-zone</h2>
         <p>In hours (can be fractional).</p>
         <ul>
           <li>
@@ -145,7 +184,7 @@ sip
       </section>
       <section>
         <h2>
-        <b>Exercise 4b:</b> Inclusive date range</h2>
+        <b>Exercise 3b:</b> Inclusive date range</h2>
         <p>Given two dates as a 2 element vector of 
         <code>(Y,M,D)</code> vectors, compute the 
         <em>inclusive</em> number of days between them.</p>
@@ -154,11 +193,9 @@ sip
 174
 </pre>
       </section>
-    </article>
-    <article id="NV">
       <section>
         <h2>
-        <b>Exercise 5:</b> Validate and Fix Dates</h2>
+        <b>Exercise 3c:</b> Validate and Fix Dates</h2>
         <p>Given a vector of 3-element 
         <code>(Y,M,D)</code>-dates:</p>
         <ul>
@@ -176,42 +213,6 @@ sip
 └───────┴───────────────────────────────────────────┘
 </pre>
       </section>
-    </article>
-    <article id="WZ">
-      <section>
-        <h2>
-        <b>Exercise 6a:</b> Head and Tail</h2>
-        <p>Rewrite 
-        <code>{(1↑⍵)(1↓⍵)}</code> in a neat way using 
-        <code>X⊂Y</code></p>
-        <pre>
-      HeadTail 'Hello'
-┌─┬────┐
-│H│ello│
-└─┴────┘
-      HeadTail ⍳4
-┌─┬─────┐
-│1│2 3 4│
-└─┴─────┘
-</pre>
-      </section>
-      <section>
-        <h2>
-        <b>Exercise 6b:</b> Partition at indices</h2>
-        <pre>
-      'abracadabra' SplitAt 1 5 5 7
-┌────┬┬──┬─────┐
-│abra││ca│dabra│
-└────┴┴──┴─────┘
-      'abracadabra' SplitAt 1 1 12
-┌┬───────────┬┐
-││abracadabra││
-└┴───────────┴┘
-</pre>
-      </section>
-    </article>
-    <article id="o">
-      <p><strong>Invalid code!</strong></p>
     </article>
   </body>
 </html>
