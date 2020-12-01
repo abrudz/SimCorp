@@ -15,7 +15,7 @@ article{display:none}
 input{text-transform:uppercase}
 div{padding-bottom:1em;text-align:center}
 nav,input,button,strong{font-size:large}
-strong{color:#f00}
+h3{color:#f00}
 h1{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 div img{height:49px;margin-bottom:-20px}
 section img{height:246.5px}
@@ -33,22 +33,22 @@ Sel=_=>{i.selectionStart=0;i.selectionEnd=2}
     <h1>Exercises - Dyalog version 18.0: selected new features</h1>
     <div>
     <label for="i">Enter 2-letter code: 
-    <input id="i" placeholder="XX" size="4" maxlength="4" required="" pattern="[A-Za-z]{2}"
+    <input autofocus id="i" placeholder="XX" size="4" maxlength="4" required="" pattern="[A-Za-z]{2}"
     onchange="Go()" onclick="Sel()"/></label>
     
     <button onclick="Go()">Go!</button>
-    <p>Ask for help ( <img src="Help.png"> ) if you get stuck</p>
+    <p>Ask for help ( <img alt="Zoom 'Ask for help' button" src="Help.png"> ) if you get stuck</p>
     </div>
     <article id="o">
-      <p><strong>Invalid code!</strong></p>
+      <h3>Invalid code!</h3>
     </article>
     <article id="YD">
       <section>
-        <div><img src="Compositions.png"></div>
+        <div><img alt="Diagram of ⍤ ∘ ⍥ compositions" src="Compositions.png"></div>
       </section>
       <section>
         <h2>
-        <b>Exercise 1a:</b> Same-rank arguments?</h2>
+        <b>Exercise 1a:</b> Same-rank arguments? <sup>Easy</sup></h2>
         <pre>
       1 2 3 SameRank 1 2 3 4
 1
@@ -62,7 +62,7 @@ Sel=_=>{i.selectionStart=0;i.selectionEnd=2}
       </section>
       <section>
         <h2>
-        <b>Exercise 1b:</b> Apply a filter</h2>
+        <b>Exercise 1b:</b> Apply a filter <sup>Medium</sup></h2>
         <p>Given a 2-element vector consisting of:</p>
         <ul>
           <li>a mask (Boolean vector)</li>
@@ -78,7 +78,7 @@ Sel=_=>{i.selectionStart=0;i.selectionEnd=2}
       </section>
       <section>
         <h2>
-        <b>Exercise 1c:</b> Count non-members</h2>
+        <b>Exercise 1c:</b> Count non-members <sup>Medium</sup></h2>
         <pre>
       'hello' NotIn 'world'
 2
@@ -90,7 +90,7 @@ Sel=_=>{i.selectionStart=0;i.selectionEnd=2}
     <article id="ZJ">
       <section>
         <h2>
-        <b>Exercise 2a:</b> Index of letters in alphabet</h2>
+        <b>Exercise 2a:</b> Index of letters in alphabet <sup>Easy</sup></h2>
         <p>Given an alphabet as left argument and word as right-argument, return the case-insensitive indices of the letters in the
         alphabet.</p>
         <pre>
@@ -102,7 +102,7 @@ Sel=_=>{i.selectionStart=0;i.selectionEnd=2}
       </section>
       <section>
         <h2>
-        <b>Exercise 2b:</b> Mask letters</h2>
+        <b>Exercise 2b:</b> Mask letters <sup>Medium</sup></h2>
         <p>Indicate which characters are Latin letters.</p>
         <pre>
       Letters 'Ai lati d''Italia.'
@@ -111,7 +111,7 @@ Sel=_=>{i.selectionStart=0;i.selectionEnd=2}
       </section>
       <section>
         <h2>
-        <b>Exercise 2c:</b> Palindrome checker</h2>
+        <b>Exercise 2c:</b> Palindrome checker <sup>Medium</sup></h2>
         <p>Check if the text is a palindrome, disregarding case and punctuation, including spaces.</p>
         <pre>
       Palin 'Ai lati d''Italia.'
@@ -121,10 +121,59 @@ Sel=_=>{i.selectionStart=0;i.selectionEnd=2}
 </pre>
       </section>
     </article>
+    <article id="OY">
+      <section>
+        <h2>
+        <b>Exercise 3a:</b> Get current time-zone <sup>Medium</sup></h2>
+        <p>In hours (can be fractional).</p>
+        <ul>
+          <li>
+          <code>⎕DT</code> 
+          <a href="https://help.dyalog.com/latest/Content/Language/System%20Functions/dt.htm">
+            <button>F1</button>
+          </a></li>
+        </ul>
+        <pre>
+      TZ
+1
+</pre>
+      </section>
+      <section>
+        <h2>
+        <b>Exercise 3b:</b> Inclusive date range <sup>Easy</sup></h2>
+        <p>Given two dates as a 2 element vector of 
+        <code>(Y,M,D)</code> vectors, compute the 
+        <em>inclusive</em> number of days between them.</p>
+        <pre>
+      Range (2020 6 11)(2020 12 1)
+174
+</pre>
+      </section>
+      <section>
+        <h2>
+        <b>Exercise 3c:</b> Validate and Fix Dates <sup>Hard</sup></h2>
+        <p>Given a vector of 3-element 
+        <code>(Y,M,D)</code>-dates:</p>
+        <ul>
+          <li>Convert valid dates to Extended ISO format</li>
+          <li>Convert invalid dates to 
+          <code>''</code></li>
+        </ul>
+        <p>Don't use error trapping!</p>
+        <pre>
+      VFD (2020 11 31)(2020 12 01)(2020 12 31)(2021 13 01)
+┌───────┬───────────────────────────────────────────┐
+│0 1 1 0│┌┬───────────────────┬───────────────────┬┐│
+│       │││2020-12-01T00:00:00│2020-12-31T00:00:00│││
+│       │└┴───────────────────┴───────────────────┴┘│
+└───────┴───────────────────────────────────────────┘
+</pre>
+      </section>
+    </article>
     <article id="WZ">
       <section>
         <h2>
-        <b>Exercise 4a:</b> Head and Tail</h2>
+        <b>Exercise 4a:</b> Head and Tail <sup>Easy</sup></h2>
         <p>Rewrite 
         <code>{(1↑⍵)(1↓⍵)}</code> in a neat way using 
         <code>X⊂Y</code></p>
@@ -141,7 +190,7 @@ Sel=_=>{i.selectionStart=0;i.selectionEnd=2}
       </section>
       <section>
         <h2>
-        <b>Exercise 4b:</b> Partition at indices</h2>
+        <b>Exercise 4b:</b> Partition at indices <sup>Medium</sup></h2>
         <pre>
       'abracadabra' SplitAt 1 5 5 7
 ┌────┬┬──┬─────┐
@@ -155,62 +204,13 @@ Sel=_=>{i.selectionStart=0;i.selectionEnd=2}
       </section>
       <section>
         <h2>
-        <b>Exercise 4c:</b> Non-unique</h2>
+        <b>Exercise 4c:</b> Non-unique <sup>Medium</sup></h2>
         <p>Find all the elements that have duplicates.</p>
         <pre>
       NonU 'Mississippi'
 sip
       NonU 2 7 1 8 2 8
 2 8
-</pre>
-      </section>
-    </article>
-    <article id="OY">
-      <section>
-        <h2>
-        <b>Exercise 3a:</b> Get current time-zone</h2>
-        <p>In hours (can be fractional).</p>
-        <ul>
-          <li>
-          <code>⎕DT</code> 
-          <a href="https://help.dyalog.com/latest/Content/Language/System%20Functions/dt.htm">
-            <button>F1</button>
-          </a></li>
-        </ul>
-        <pre>
-      TZ
-1
-</pre>
-      </section>
-      <section>
-        <h2>
-        <b>Exercise 3b:</b> Inclusive date range</h2>
-        <p>Given two dates as a 2 element vector of 
-        <code>(Y,M,D)</code> vectors, compute the 
-        <em>inclusive</em> number of days between them.</p>
-        <pre>
-      Range (2020 6 11)(2020 12 1)
-174
-</pre>
-      </section>
-      <section>
-        <h2>
-        <b>Exercise 3c:</b> Validate and Fix Dates</h2>
-        <p>Given a vector of 3-element 
-        <code>(Y,M,D)</code>-dates:</p>
-        <ul>
-          <li>Convert valid dates to Extended ISO format</li>
-          <li>Convert invalid dates to 
-          <code>''</code></li>
-        </ul>
-        <p>Don't use error trapping!</p>
-        <pre>
-      VFD (2020 11 31)(2020 12 01)(2020 12 31)(2021 13 01)
-┌───────┬───────────────────────────────────────────┐
-│0 1 1 0│┌┬───────────────────┬───────────────────┬┐│
-│       │││2020-12-01T00:00:00│2020-12-31T00:00:00│││
-│       │└┴───────────────────┴───────────────────┴┘│
-└───────┴───────────────────────────────────────────┘
 </pre>
       </section>
     </article>
