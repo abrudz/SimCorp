@@ -11,19 +11,42 @@ body{margin:2em;overflow-y:scroll}
 pre,code,input{font-family:M}
 b{color:orange}
 section{border-top:1px solid #000;padding:1em 2em}
+article{display:none}
 input{text-transform:uppercase}
 div{padding-bottom:1em;text-align:center}
+nav,input,button,strong{font-size:large}
+h3{color:#f00}
 h1{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-img{height:246.5px}
+div img{height:49px;margin-bottom:-20px}
+section img{height:246.5px}
     </style>
+    <script>
+Go=_=>{
+  [...document.getElementsByTagName('ARTICLE')].forEach(e=>e.style.display='none');
+  (e=>[e,o][+!e].style.display='unset')(document.getElementById(i.value.toUpperCase()));
+  Sel()
+}
+Sel=_=>{i.selectionStart=0;i.selectionEnd=2}
+    </script>
   </head>
   <body>
     <h1>Exercises - Dyalog version 18.0: selected new features</h1>
-    <article id="1">
+    <div>
+    <label for="i">Enter 2-letter code: 
+    <input autofocus id="i" placeholder="XX" size="4" maxlength="4" required="" pattern="[A-Za-z]{2}"
+    onchange="Go()" onclick="Sel()"/></label>
+    
+    <button onclick="Go()">Go!</button>
+    <p>Ask for help ( <img alt="Zoom 'Ask for help' button" src="Help.png"> ) if you get stuck</p>
+    </div>
+    <article id="o">
+      <h3>Invalid code!</h3>
+    </article>
+    <article id="YD">
       <section>
         <div><img alt="Diagram of ⍤ ∘ ⍥ compositions" src="Compositions.png"></div>
       </section>
-      <section id="1a">
+      <section>
         <h2>
         <b>Exercise 1a:</b> Same-rank arguments? <sup>Easy</sup></h2>
         <pre>
@@ -37,7 +60,7 @@ img{height:246.5px}
 1
 </pre>
       </section>
-      <section id="1b">
+      <section>
         <h2>
         <b>Exercise 1b:</b> Apply a filter <sup>Medium</sup></h2>
         <p>Given a 2-element vector consisting of:</p>
@@ -53,7 +76,7 @@ img{height:246.5px}
 ¯5 3J4
 </pre>
       </section>
-      <section id="1c">
+      <section>
         <h2>
         <b>Exercise 1c:</b> Count non-members <sup>Medium</sup></h2>
         <pre>
@@ -64,8 +87,8 @@ img{height:246.5px}
 </pre>
       </section>
     </article>
-    <article id="2">
-      <section id="2a">
+    <article id="ZJ">
+      <section>
         <h2>
         <b>Exercise 2a:</b> Index of letters in alphabet <sup>Easy</sup></h2>
         <p>Given an alphabet as left argument and word as right-argument, return the case-insensitive indices of the letters in the
@@ -77,7 +100,7 @@ img{height:246.5px}
 9 20 1 11 26 1
 </pre>
       </section>
-      <section id="2b">
+      <section>
         <h2>
         <b>Exercise 2b:</b> Mask letters <sup>Medium</sup></h2>
         <p>Indicate which characters are Latin letters.</p>
@@ -86,7 +109,7 @@ img{height:246.5px}
 1 1 0 1 1 1 1 0 1 0 1 1 1 1 1 1 0
 </pre>
       </section>
-      <section id="2c">
+      <section>
         <h2>
         <b>Exercise 2c:</b> Palindrome checker <sup>Medium</sup></h2>
         <p>Check if the text is a palindrome, disregarding case and punctuation, including spaces.</p>
@@ -98,8 +121,8 @@ img{height:246.5px}
 </pre>
       </section>
     </article>
-    <article id="3">
-      <section id="3a">
+    <article id="OY">
+      <section>
         <h2>
         <b>Exercise 3a:</b> Get current time-zone <sup>Medium</sup></h2>
         <p>In hours (can be fractional).</p>
@@ -115,7 +138,7 @@ img{height:246.5px}
 1
 </pre>
       </section>
-      <section id="3b">
+      <section>
         <h2>
         <b>Exercise 3b:</b> Inclusive date range <sup>Easy</sup></h2>
         <p>Given two dates as a 2 element vector of 
@@ -126,7 +149,7 @@ img{height:246.5px}
 174
 </pre>
       </section>
-      <section id="3c">
+      <section>
         <h2>
         <b>Exercise 3c:</b> Validate and Fix Dates <sup>Hard</sup></h2>
         <p>Given a vector of 3-element 
@@ -147,8 +170,8 @@ img{height:246.5px}
 </pre>
       </section>
     </article>
-    <article id="4">
-      <section id="4a">
+    <article id="WZ">
+      <section>
         <h2>
         <b>Exercise 4a:</b> Head and Tail <sup>Easy</sup></h2>
         <p>Rewrite 
@@ -165,7 +188,7 @@ img{height:246.5px}
 └─┴─────┘
 </pre>
       </section>
-      <section id="4b">
+      <section>
         <h2>
         <b>Exercise 4b:</b> Partition at indices <sup>Medium</sup></h2>
         <pre>
@@ -179,7 +202,7 @@ img{height:246.5px}
 └┴───────────┴┘
 </pre>
       </section>
-      <section id="4c">
+      <section>
         <h2>
         <b>Exercise 4c:</b> Non-unique <sup>Medium</sup></h2>
         <p>Find all the elements that have duplicates.</p>
