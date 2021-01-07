@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <link rel="shortcut icon" href="../favicon.ico"/>
+    <link rel="stylesheet" href="../main.css"/>
+    <script src="../main.js"></script>
+		<title>Exercises - Namespaces</title>
+  </head>
+  <body>
+    <h1>Exercises - Namespaces</h1>
+    <div>
+    <label for="i">Enter 2-letter code: 
+    <input autofocus id="i" placeholder="XX" size="4" maxlength="4" required="" pattern="[A-Za-z]{2}"
+    onchange="Go()" onclick="Sel()"/></label>
+    
+    <button onclick="Go()">Go!</button>
+    <p>Ask for help ( <img alt="Zoom 'Ask for help' button" src="../Help.png"> ) if you get stuck</p>
+    </div>
+    <article id="o">
+      <h3>Invalid code!</h3>
+    </article>
+    <article id="PQ">
+      <section>
+        <h2>
+        <b>Exercise 1a:</b> Creation <sup>Easy</sup></h2>
+        <p>Create a namespace <code>req</code> where <code>status</code> is <code>200</code> and <code>Method</code> is <code>{4+2×⍵}</code>&nbsp;.</p>
+        <pre>
+          <i>your</i> ⋄ <i>expressions</i>
+          req.status
+    200
+          req.Method 200
+    404
+    </pre>
+      </section>
+      <section>
+        <h2>
+        <b>Exercise 1b:</b> Updating <sup>Easy</sup></h2>
+        <p>Within <code>req</code>, apply <code>Method</code> to <code>status</code> and update <code>status</code> with the result.</p>
+        <pre>
+          req.status
+    200
+          <i>your_expression</i>
+          req.status
+    404
+</pre>
+      </section>
+      <section>
+        <h2>
+        <b>Exercise 1c:</b> Importing a workspace <sup>Medium</sup></h2>
+        <p>Write a function <code>Into</code> that copies a workspace into a namespace (using ⎕CY).
+        </p>
+        <pre>
+      dfns←⎕NS⍬
+      'dfns.dws' Into dfns
+      dfns.disp dfns.morse'SOS'
+┌───┬───┬───┐
+│...│---│...│
+└───┴───┴───┘
+</pre>
+      </section>
+    </article>
+    <article id="MC">
+      <section>
+        <h2>
+        <b>Exercise 2a:</b> Swap names <sup>Easy</sup></h2>
+        <p>Write an <i>expression</i> that swaps the values of variables <code>x</code> and <code>y</code> in a namespace <code>ns</code>&nbsp;.</p>
+        <pre>
+      ns←⎕NS⍬ ⋄ ns.x←10 ⋄ ns.y←20
+      <i>your_expression</i>
+      ns.x ⋄ ns.y
+20 10
+    </pre>
+      </section>
+      <section>
+        <h2>
+        <b>Exercise 2b:</b> Swap namespaces <sup>Easy</sup></h2>
+        <p>Write an  <i>expression</i> that swaps the values of the variables named <code>x</code> in the namespaces <code>ns1</code> and <code>ns2</code>&nbsp;.</p>
+        <pre>
+      ns1←⎕NS⍬ ⋄ ns2←⎕NS⍬
+      ns1.x←10 ⋄ ns2.x←20
+      <i>your_expression</i>
+      ns1.x ⋄ ns2.x
+20 10
+</pre>
+      </section>
+      <section>
+        <h2>
+        <b>Exercise 2c:</b> Testing if reference <sup>Medium</sup></h2>
+        <p>Write a function <code>ScalarRef</code> that returns a scalar Boolean value indicating whether its argument is a scalar namespace.</p>
+        <p>Use one or more of these scalar namespace properties:</p>
+        <ul>
+          <li>Name Class (<code>⎕NC</code>) is 9 (ref; non-scalar arrays and non-nss are 2)</li>
+          <li>Data Representation (<code>⎕DR</code>) is 326 (pointer)</li>
+          <li>Depth (<code>≡</code>) is 0 (simple scalar)</li>
+          <li>Allows dot syntax (<code>ns.name</code>)</li>
+        </ul>
+        <pre>
+      ScalarRef¨ # 'abc' (⎕SE⎕SE) ⎕SE.Dyalog 42
+1 0 0 1 0
+</pre>
+      </section>
+      <section>
+        <h2>
+        <b>Exercise 2d:</b> Indicate references <sup>Hard</sup></h2>
+        <p>Write a function <code>RefMask</code> that returns an array of the same structure as its argument, but with bits indicating the namespace references.</p>
+        <pre>
+      RefMask (⊂⊂⊂⊂1 2 #) 3 ⎕SE.Dyalog (2 2⍴'abc',⎕SE)
+┌─────────────┬─┬─┬───┐
+│┌───────────┐│0│1│0 0│
+││┌─────────┐││ │ │0 1│
+│││┌───────┐│││ │ │   │
+││││┌─────┐││││ │ │   │
+│││││0 0 1│││││ │ │   │
+││││└─────┘││││ │ │   │
+│││└───────┘│││ │ │   │
+││└─────────┘││ │ │   │
+│└───────────┘│ │ │   │
+└─────────────┴─┴─┴───┘
+</pre>
+      </section>
+    </article>
+    <article id="VF">
+      <section>
+        <h2>
+        <b>Exercise 3a:</b> Fetch multiple values <sup>Medium</sup></h2>
+        <p>Write a function <code>Get</code> that takes a namespace as left argument and a vector of names as right argument, and returns the corresponding values from the namespace.</p>
+        <pre>
+      ns←⎕NS⍬
+      ns.(foo bar baz)←(1 2 3) 'Hello' 42
+
+      names←'foo' 'bar' 'foo' 'baz'
+      ns Get names
+ 1 2 3  Hello  1 2 3  42</pre>
+      </section>
+      <section>
+        <h2>
+        <b>Exercise 3b:</b> Assign a value <sup>Medium</sup></h2>
+        <p>Write a function <code>Set</code> that takes a namespace as left argument and a two-element <code>(name value)</code> vector as right argument, then does the corresponding assignment in the namespace.</p>
+        <pre>
+      ns←⎕NS⍬
+      ns Set 'my' (1 2 3)
+      10×ns.my
+10 20 30</pre>
+      </section>
+    </article>
+    <article id="TY">
+      <section>
+        <h2>
+        <b>Exercise 4a:</b> Is argument a root? <sup>Easy</sup></h2>
+        <p>Write a function <code>IsRoot</code> that takes a namespace as argument that tells you whether that namespace is a root namespace.</p>
+        <pre>
+      IsRoot ⎕SE.Dyalog.Utils
+0
+      IsRoot #
+1
+      IsRoot ⎕SE
+1
+</pre>
+      </section>
+      <section>
+        <h2>
+        <b>Exercise 4b:</b> What is my root? <sup>Medium</sup></h2>
+        <p>Write a function <code>FindRoot</code> that takes a namespace as argument and returns its root.</p>
+        <pre>
+      FindRoot ⎕SE.Dyalog.Utils
+⎕SE
+      FindRoot #
+#
+      FindRoot ⎕NS⍬
+#
+</pre>
+      </section>
+      <section>
+        <h2>
+        <b>Exercise 4c:</b> Our roots? <sup>Easy ― based on <code>FindRoot</code></sup></h2>
+        <p>Write a function <code>FindRoots</code> that takes an arbitrary array of namespaces and finds the root for each namespace.</p>
+        <pre>
+      FindRoots ⍪⎕SE.Dyalog.Utils(#,⎕NS⍬)⎕SE
+┌──────┐
+│⎕SE   │
+├──────┤
+│ #  # │
+├──────┤
+│⎕SE   │
+└──────┘
+</pre>
+      </section>
+      <section>
+        <h2>
+        <b>Exercise 4d:</b> Namespace lineage <sup>Hard</h2>
+        <p>Write a function <code>FindRoots</code> that takes a single namespace and returns its lineage (as a simple vector) from root to leaf.</p>
+        <pre>
+      Line ⎕SE.Dyalog.Utils
+ ⎕SE  ⎕SE.Dyalog  ⎕SE.Dyalog.Utils 
+
+      Line ⎕SE.cbbot.bandsb2.sb.io
+ ⎕SE  ⎕SE.cbbot  ⎕SE.cbbot.bandsb2  ⎕SE.cbbot.bandsb2.sb  ⎕SE.cbbot.bandsb2.sb.io 
+</pre>
+      </section>
+    </article>
+  </body>
+</html>
