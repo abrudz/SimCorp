@@ -88,6 +88,10 @@
         <h2>
         <b>Exercise 2c:</b> Testing if reference <sup>Medium</sup></h2>
         <p>Write a function <code>ScalarRef</code> that returns a scalar Boolean value indicating whether its argument is a scalar namespace.</p>
+        <pre>
+      ScalarRef¨ # 'abc' (⎕SE⎕SE) ⎕SE.Dyalog 42
+1 0 0 1 0
+</pre>
         <p>Use one or more of these scalar namespace properties:</p>
         <ul>
           <li>Name Class (<code>⎕NC</code>) is 9 (ref; non-scalar arrays and non-nss are 2)</li>
@@ -95,10 +99,6 @@
           <li>Depth (<code>≡</code>) is 0 (simple scalar)</li>
           <li>Allows dot syntax (<code>ns.name</code>)</li>
         </ul>
-        <pre>
-      ScalarRef¨ # 'abc' (⎕SE⎕SE) ⎕SE.Dyalog 42
-1 0 0 1 0
-</pre>
       </section>
       <section>
         <h2>
