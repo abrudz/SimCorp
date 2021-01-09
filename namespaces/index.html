@@ -5,10 +5,14 @@
     <link rel="shortcut icon" href="../favicon.ico"/>
     <link rel="stylesheet" href="../main.css"/>
     <script src="../main.js"></script>
-		<title>Exercises - Namespaces</title>
+    <title>Exercises - Introduction to Namespaces</title>
+    <style>
+      #MC img{height:116.5px;margin-left:3.5em}
+      pre{display:inline-block}
+    </style>
   </head>
   <body>
-    <h1>Exercises - Namespaces</h1>
+    <h1>Exercises - Introduction to Namespaces</h1>
     <div>
     <label for="i">Enter 2-letter code: 
     <input autofocus id="i" placeholder="XX" size="4" maxlength="4" required="" pattern="[A-Za-z]{2}"
@@ -66,11 +70,13 @@
         <b>Exercise 2a:</b> Swap names <sup>Easy</sup></h2>
         <p>Write an <i>expression</i> that swaps the values of variables <code>x</code> and <code>y</code> in a namespace <code>ns</code>&nbsp;.</p>
         <pre>
-      ns←⎕NS⍬ ⋄ ns.x←10 ⋄ ns.y←20
+      ns←⎕NS⍬
+      ns.x←10 ⋄ ns.y←20
       <i>your_expression</i>
       ns.x ⋄ ns.y
 20 10
     </pre>
+    <img src="2a.png" alt="Diagram of swapping x and y in ns"/>
       </section>
       <section>
         <h2>
@@ -82,7 +88,7 @@
       <i>your_expression</i>
       ns1.x ⋄ ns2.x
 20 10
-</pre>
+</pre><img src="2b.png" alt="Diagram of swapping x between ns1 and ns2"/>
       </section>
       <section>
         <h2>
