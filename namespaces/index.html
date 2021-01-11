@@ -73,7 +73,7 @@
       ns←⎕NS⍬
       ns.x←10 ⋄ ns.y←20
       <i>your_expression</i>
-      ns.x ⋄ ns.y
+      ns.x ns.y
 20 10
     </pre>
     <img src="2a.png" alt="Diagram of swapping x and y in ns"/>
@@ -86,7 +86,7 @@
       ns1←⎕NS⍬ ⋄ ns2←⎕NS⍬
       ns1.x←10 ⋄ ns2.x←20
       <i>your_expression</i>
-      ns1.x ⋄ ns2.x
+      ns1.x ns2.x
 20 10
 </pre><img src="2b.png" alt="Diagram of swapping x between ns1 and ns2"/>
       </section>
@@ -95,8 +95,9 @@
         <b>Exercise 2c:</b> Testing if reference <sup>Medium</sup></h2>
         <p>Write a function <code>ScalarRef</code> that returns a scalar Boolean value indicating whether its argument is a scalar namespace.</p>
         <pre>
-      ScalarRef¨ # 'abc' (⎕SE⎕SE) ⎕SE.Dyalog 42
-1 0 0 1 0
+          ns←⎕NS⍬ ⋄ ns.a←10
+          ]disp ScalarRef¨ ns.a 'abc' (ns ns) ns (⎕NS⍬) 42
+    0 0 0 1 1 0    
 </pre>
         <p>Use one or more of these scalar namespace properties:</p>
         <ul>
@@ -111,14 +112,14 @@
         <b>Exercise 2d:</b> Indicate references <sup>Hard</sup></h2>
         <p>Write a function <code>RefMask</code> that returns an array of the same structure as its argument, but with bits indicating the namespace references.</p>
         <pre>
-      RefMask (⊂⊂⊂⊂1 2 #) 3 ⎕SE.Dyalog (2 2⍴'abc',⎕SE)
-┌─────────────┬─┬─┬───┐
+      ]disp RefMask (⊂⊂⊂⊂1 2 ns) 3 ns (2 2⍴'abc',⎕NS⍬)
+┌→────────────┬─┬─┬───┐
 │┌───────────┐│0│1│0 0│
 ││┌─────────┐││ │ │0 1│
 │││┌───────┐│││ │ │   │
 ││││┌─────┐││││ │ │   │
 │││││0 0 1│││││ │ │   │
-││││└─────┘││││ │ │   │
+││││└~───→┘││││ │ │   │
 │││└───────┘│││ │ │   │
 ││└─────────┘││ │ │   │
 │└───────────┘│ │ │   │
@@ -145,9 +146,10 @@
         <p>Write a function <code>Set</code> that takes a namespace as left argument and a two-element <code>(name value)</code> vector as right argument, then does the corresponding assignment in the namespace.</p>
         <pre>
       ns←⎕NS⍬
-      ns Set 'my' (1 2 3)
-      10×ns.my
-10 20 30</pre>
+      ns Set 'my' 'Hello'
+      2/ns.my
+HHeelllloo
+</pre>
       </section>
     </article>
     <article id="TY">
