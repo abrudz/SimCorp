@@ -131,18 +131,28 @@
       <section>
         <h2>
         <b>Exercise 3a:</b> Fetch multiple values <sup>Medium</sup></h2>
-        <p>Write a function <code>Get</code> that takes a namespace as left argument and a vector of names as right argument, and returns the corresponding values from the namespace.</p>
+        <p>Write a function <code>Fetch</code> that takes a namespace as left argument and a vector of names as right argument, and returns the corresponding values from the namespace.</p>
         <pre>
       ns←⎕NS⍬
       ns.(foo bar baz)←(1 2 3) 'Hello' 42
 
       names←'foo' 'bar' 'foo' 'baz'
-      ns Get names
+      ns Fetch names
  1 2 3  Hello  1 2 3  42</pre>
       </section>
       <section>
         <h2>
         <b>Exercise 3b:</b> Assign a value <sup>Medium</sup></h2>
+        <p>Write a function <code>Gets</code> that takes a name as left argument and a value as right argument, then does the assignment.</p>
+        <pre>
+      'my' Gets 'Hello'
+      2/my
+HHeelllloo
+</pre>
+      </section>
+      <section>
+        <h2>
+        <b>Exercise 3c:</b> Assign in a namespace <sup>Medium</sup></h2>
         <p>Write a function <code>Set</code> that takes a namespace as left argument and a two-element <code>(name value)</code> vector as right argument, then does the corresponding assignment in the namespace.</p>
         <pre>
       ns←⎕NS⍬
@@ -153,7 +163,7 @@ HHeelllloo
       </section>
       <section>
         <h2>
-        <b>Exercise 3c:</b> Assign multiple values <sup>Hard</sup></h2>
+        <b>Exercise 3d:</b> Multiple assignment <sup>Hard</sup></h2>
         <p>Improve <code>Set</code> so that it handles multiple two-element <code>(name value)</code> vectors as right argument.</p>
         <pre>
       ns←⎕NS⍬
